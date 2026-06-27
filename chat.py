@@ -9,6 +9,7 @@ load_dotenv()
 import os
 import tempfile
 import streamlit as st
+st.title('PDF Chatbot')
 uploaded_file = st.file_uploader("Upload a PDF", type="pdf")
 if uploaded_file is not None:
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
@@ -49,7 +50,6 @@ if uploaded_file is not None:
         embedding
     )
     retreiver=db.as_retriever()
-    st.title('PDF Chatbot')
     question=st.text_input('Enter Your Question')
     if st.button('Generate'):
         result=retreiver.invoke(question)
